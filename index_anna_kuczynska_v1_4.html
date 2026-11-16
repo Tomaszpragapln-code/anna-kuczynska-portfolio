@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#e8cbd2">
+<title>Anna Kuczyńska | Model Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --pink: #e8bfc9;
+  --pink-deep: #bd5578;
+  --pink-light: #f8e8ec;
+  --cream: #fff8f8;
+  --ink: #48252f;
+  --muted: #9a747e;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: linear-gradient(135deg, #e8bdc7 0%, #f0cbd3 52%, #e6b8c3 100%);
+  color: var(--ink);
+  font-family: "DM Sans", sans-serif;
+}
+a { color: inherit; text-decoration: none; }
+.navbar {
+  max-width: 1500px;
+  margin: auto;
+  padding: 25px 6%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 25px;
+}
+.brand { display: flex; align-items: center; gap: 13px; }
+.logo {
+  font: 400 36px/1 "Playfair Display", serif;
+  letter-spacing: 2px;
+  color: var(--pink-deep);
+}
+.brand-name { font: 400 16px "Playfair Display", serif; }
+.brand-sub { display: block; margin-top: 4px; font-size: 8px; letter-spacing: 2px; }
+.nav-links {
+  display: flex;
+  gap: clamp(15px, 3vw, 42px);
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+.nav-links a { transition: color .25s; }
+.nav-links a:hover { color: white; }
+.social { display: flex; gap: 16px; font-size: 11px; }
+main { max-width: 1500px; margin: auto; padding: 25px 6% 80px; }
+.section-label {
+  font-size: 10px;
+  letter-spacing: 4px;
+  color: var(--pink-deep);
+  text-transform: uppercase;
+  margin: 15px 0 28px;
+}
+.profile {
+  background: var(--cream);
+  padding: 55px 5% 65px;
+  border-radius: 3px;
+  box-shadow: 0 18px 55px #9d53651c, 0 0 45px #fff5;
+  overflow: hidden;
+}
+.profile-grid {
+  display: grid;
+  grid-template-columns: 1.08fr .92fr;
+  gap: 7%;
+  align-items: start;
+}
+.visual { position: relative; min-width: 0; }
+.main-photo {
+  display: block;
+  width: 100%;
+  height: 650px;
+  object-fit: cover;
+  object-position: center 18%;
+  cursor: zoom-in;
+  animation: heroReveal 1.15s cubic-bezier(.2,.7,.2,1) both;
+}
+.profile-info { padding: 10px 0 0; position: relative; }
+.eyebrow { font-size: 10px; letter-spacing: 4px; color: var(--pink-deep); margin-bottom: 16px; }
+h1, h2 { font-family: "Playfair Display", serif; font-weight: 400; }
+h1 { font-size: clamp(42px, 4.2vw, 68px); line-height: 1.08; margin: 0 0 14px; }
+.subtitle { font-size: 10px; letter-spacing: 3px; color: var(--muted); text-transform: uppercase; }
+.line { width: 58px; height: 1px; background: var(--pink); margin: 28px 0; }
+.measurements { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px 12px; }
+.measurement small { display: block; color: var(--muted); font-size: 9px; letter-spacing: 1.5px; margin-bottom: 8px; }
+.measurement strong { font-weight: 400; font-size: 13px; }
+.thumbnails {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 9px;
+  margin-top: 30px;
+}
+.thumbnails img {
+  width: 100%;
+  height: 112px;
+  object-fit: cover;
+  border: 3px solid var(--cream);
+  box-shadow: 0 5px 16px #5d3d4518;
+  cursor: pointer;
+  transition: transform .3s, box-shadow .3s;
+}
+.thumbnails img:hover { transform: translateY(-5px); box-shadow: 0 10px 20px #5d3d4528; }
+.thumbnails img.active { outline: 1px solid var(--pink-deep); outline-offset: -4px; }
+.about { margin-top: 38px; max-width: 560px; }
+.about-heading {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin: 0 0 13px;
+}
+.about-social {
+  color: #fff;
+  background: #bd5578;
+  border-radius: 50px;
+  min-width: 84px;
+  height: 30px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "DM Sans", sans-serif;
+  font-size: 13px;
+  letter-spacing: 1px;
+}
+.about-rule {
+  height: 1px;
+  flex: 1;
+  background: #e7a9b9;
+}
+.about h2 { font-size: 21px; letter-spacing: 1px; margin: 0 0 10px; }
+.about p { font-size: 12px; line-height: 2; color: #89777a; margin: 0; }
+.cta {
+  display: inline-block;
+  background: linear-gradient(110deg, #d95e88 0%, #a94769 100%);
+  color: white;
+  padding: 16px 29px;
+  margin-top: 22px;
+  border-radius: 9px;
+  box-shadow: 0 8px 20px #bd557833;
+  font-size: 10px;
+  letter-spacing: 1.7px;
+  transition: transform .3s, box-shadow .3s, filter .3s;
+}
+.cta:hover {
+  filter: brightness(1.06);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 24px #bd557844;
+}
+.gallery-section { padding: 100px 0 50px; text-align: center; }
+.gallery-section h2 { font-size: 46px; margin: 10px 0 38px; }
+.gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+.gallery img { width: 100%; height: 390px; object-fit: cover; cursor: zoom-in; transition: transform .4s, filter .4s; }
+.gallery img:hover { transform: scale(1.015); filter: brightness(.92); }
+.contact { background: var(--cream); padding: 70px 20px; text-align: center; margin-top: 70px; }
+.contact h2 { font-size: 42px; margin: 12px 0; }
+.contact p { font-size: 12px; color: var(--muted); line-height: 2; }
+footer { padding: 28px 20px 22px; text-align: center; color: #8c7279; font-size: 10px; letter-spacing: 2px; }
+.credit {
+  display: inline-block;
+  margin-top: 15px;
+  padding: 3px 0;
+  font-size: 11px;
+  letter-spacing: 1.7px;
+  color: #795765;
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  animation: electricPulse 5.2s ease-in-out infinite;
+}
+.credit::before {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  top: -35%;
+  bottom: -35%;
+  left: 0;
+  width: 34%;
+  background: linear-gradient(100deg, transparent 0%, #fff8 35%, #fff 50%, #e88ab5 65%, transparent 100%);
+  filter: blur(2px);
+  opacity: 0;
+  transform: translateX(300%) skewX(-18deg);
+  animation: electricSweep 5.2s ease-in-out infinite;
+  pointer-events: none;
+}
+.credit::after {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  top: 50%;
+  right: 0;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #fff, #d66c9b, #fff, transparent);
+  opacity: 0;
+  transform: scaleX(0);
+  transform-origin: right center;
+  animation: electricFlash 5.2s ease-in-out infinite;
+  pointer-events: none;
+}
+@keyframes electricSweep {
+  0%, 65%, 100% { opacity: 0; transform: translateX(300%) skewX(-18deg); }
+  68% { opacity: 1; }
+  76% { opacity: .95; transform: translateX(-320%) skewX(-18deg); }
+  79% { opacity: 0; }
+}
+@keyframes electricFlash {
+  0%, 66%, 100% { opacity: 0; transform: scaleX(0); }
+  70% { opacity: .85; transform: scaleX(1); }
+  77% { opacity: 0; transform: scaleX(.15); }
+}
+@keyframes electricPulse {
+  0%, 66%, 100% { text-shadow: none; }
+  70%, 75% { text-shadow: 0 0 4px #fff, 0 0 12px #e98bb3, 0 0 20px #d66c9b; }
+  78% { text-shadow: none; }
+}
+
+/* Delikatne pojawianie się fotografii */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity .85s ease, transform .85s cubic-bezier(.2,.7,.2,1);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.thumbnails img {
+  animation: thumbReveal .8s cubic-bezier(.2,.7,.2,1) both;
+}
+.thumbnails img:nth-child(1) { animation-delay: .25s; }
+.thumbnails img:nth-child(2) { animation-delay: .38s; }
+.thumbnails img:nth-child(3) { animation-delay: .51s; }
+.thumbnails img:nth-child(4) { animation-delay: .64s; }
+.gallery img {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity .8s ease, transform .8s cubic-bezier(.2,.7,.2,1), filter .4s;
+}
+.gallery img.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+@keyframes heroReveal {
+  from { opacity: 0; transform: scale(1.025); }
+  to { opacity: 1; transform: scale(1); }
+}
+@keyframes thumbReveal {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.lightbox {
+  position: fixed; inset: 0; z-index: 100;
+  background: rgba(35, 26, 29, .94);
+  display: none; align-items: center; justify-content: center; padding: 30px;
+}
+.lightbox.open { display: flex; }
+.lightbox img { max-width: 90%; max-height: 85vh; object-fit: contain; }
+.close {
+  position: absolute; top: 20px; right: 35px; color: white;
+  background: none; border: none; font-size: 35px; cursor: pointer;
+}
+@media (max-width: 1000px) {
+  .profile-grid { grid-template-columns: 1fr 1fr; gap: 5%; }
+  .main-photo { height: 570px; }
+  .thumbnails { gap: 7px; margin-top: 25px; }
+  .thumbnails img { height: 100px; border-width: 3px; }
+  .about { margin-top: 32px; }
+  .measurements { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 700px) {
+  .navbar { padding: 20px 5%; flex-wrap: wrap; }
+  .nav-links { order: 3; width: 100%; justify-content: space-between; gap: 8px; font-size: 9px; }
+  .social { display: none; }
+  main { padding: 15px 4% 55px; }
+  .profile { padding: 25px 18px 35px; }
+  .profile-grid { grid-template-columns: 1fr; gap: 30px; }
+  .visual { padding-bottom: 0; }
+  .main-photo { height: 470px; }
+  .thumbnails { gap: 5px; margin-top: 22px; }
+  .thumbnails img { height: 95px; border-width: 3px; }
+  .profile-info { padding-top: 15px; }
+  .about { margin-top: 35px; }
+  .about-heading { gap: 12px; }
+  .about-social { min-width: 70px; height: 27px; }
+  .measurements { grid-template-columns: repeat(4, 1fr); gap: 12px 7px; }
+  .measurement small { font-size: 8px; letter-spacing: .8px; }
+  .measurement strong { font-size: 11px; }
+  .gallery-section { padding-top: 75px; }
+  .gallery-section h2 { font-size: 35px; }
+  .gallery { grid-template-columns: repeat(2, 1fr); gap: 9px; }
+  .gallery img { height: 230px; }
+  .contact { padding: 50px 15px; }
+  .contact h2 { font-size: 34px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    transition-duration: .01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .reveal, .gallery img { opacity: 1 !important; transform: none !important; }
+}
+</style>
+</head>
+<body>
+<header class="navbar">
+  <a href="#home" class="brand" aria-label="Anna Kuczyńska – strona główna">
+    <span class="logo">AK.</span>
+    <span class="brand-name">Anna Kuczyńska<span class="brand-sub">PHOTOMODEL PORTFOLIO</span></span>
+  </a>
+  <nav class="nav-links" aria-label="Nawigacja główna">
+    <a href="#home">Home</a><a href="#portfolio">Portfolio</a><a href="#about">O mnie</a><a href="#contact">Kontakt</a>
+  </nav>
+  <div class="social"><a href="https://instagram.com/" target="_blank" rel="noopener">INSTAGRAM ↗</a></div>
+</header>
+
+<main id="home">
+  <div class="section-label">01 / Personal model portfolio</div>
+  <section class="profile">
+    <div class="profile-grid">
+      <div class="visual">
+        <img class="main-photo" id="mainPhoto"
+          src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?w=1400&auto=format&fit=crop"
+          alt="Przykładowa fotografia modowa całej sylwetki – zdjęcie demonstracyjne">
+      </div>
+      <div class="profile-info">
+        <div class="eyebrow">Meet the model</div>
+        <h1>Anna<br>Kuczyńska</h1>
+        <div class="subtitle">Photomodel · Poland</div>
+        <div class="line"></div>
+        <div class="measurements">
+          <div class="measurement"><small>HEIGHT</small><strong>— cm</strong></div>
+          <div class="measurement"><small>EYES</small><strong>—</strong></div>
+          <div class="measurement"><small>HAIR</small><strong>—</strong></div>
+          <div class="measurement"><small>SIZE</small><strong>—</strong></div>
+        </div>
+        <div class="thumbnails" aria-label="Wybierz zdjęcie główne">
+          <img class="active" onclick="selectPhoto(this)" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&auto=format&fit=crop" alt="Zdjęcie demonstracyjne 1">
+          <img onclick="selectPhoto(this)" src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=400&auto=format&fit=crop" alt="Zdjęcie demonstracyjne 2">
+          <img onclick="selectPhoto(this)" src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=400&auto=format&fit=crop" alt="Zdjęcie demonstracyjne 3">
+          <img onclick="selectPhoto(this)" src="https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?w=400&auto=format&fit=crop" alt="Zdjęcie demonstracyjne 4">
+        </div>
+        <div class="about" id="about">
+          <div class="about-heading">
+            <span class="about-social" aria-hidden="true">◎　f</span>
+            <span class="about-rule"></span>
+          </div>
+          <h2>O MNIE</h2>
+          <p>Fotografia to dla mnie sposób wyrażania siebie, emocji i osobowości. Lubię odkrywać różne style, bawić się modą i tworzyć wyjątkowe kadry.</p>
+        </div>
+        <a href="#portfolio" class="cta">ZOBACZ PEŁNE PORTFOLIO →</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="gallery-section reveal" id="portfolio">
+    <div class="section-label">02 / Selected photographs</div>
+    <h2>My Portfolio</h2>
+    <div class="gallery">
+      <img class="reveal" onclick="openLightbox(this)" src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=900&auto=format&fit=crop" alt="Fotografia demonstracyjna – portret">
+      <img class="reveal" onclick="openLightbox(this)" src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=900&auto=format&fit=crop" alt="Fotografia demonstracyjna – fashion">
+      <img class="reveal" onclick="openLightbox(this)" src="https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?w=900&auto=format&fit=crop" alt="Fotografia demonstracyjna – beauty">
+      <img class="reveal" onclick="openLightbox(this)" src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?w=900&auto=format&fit=crop" alt="Fotografia demonstracyjna – editorial">
+      <img class="reveal" onclick="openLightbox(this)" src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=900&auto=format&fit=crop" alt="Fotografia demonstracyjna – moda">
+      <img class="reveal" onclick="openLightbox(this)" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=900&auto=format&fit=crop" alt="Fotografia demonstracyjna – portret">
+    </div>
+  </section>
+</main>
+
+<section class="contact reveal" id="contact">
+  <div class="section-label">03 / Get in touch</div>
+  <h2>Let's create something beautiful.</h2>
+  <p>Zapraszam do kontaktu w sprawie sesji zdjęciowych i współpracy.</p>
+  <a href="mailto:kontakt@example.com" class="cta">NAPISZ DO MNIE →</a>
+</section>
+
+<footer>
+  <div>© 2026 ANNA KUCZYŃSKA · MODEL PORTFOLIO</div>
+  <div class="credit">Strona internetowa: Tomasz Bąbel</div>
+</footer>
+
+<div class="lightbox" id="lightbox" onclick="closeLightbox()" role="dialog" aria-modal="true" aria-label="Powiększone zdjęcie">
+  <button class="close" aria-label="Zamknij" onclick="closeLightbox()">×</button>
+  <img id="lightboxImage" src="" alt="Powiększone zdjęcie">
+</div>
+
+<script>
+function selectPhoto(element) {
+  const main = document.getElementById("mainPhoto");
+  const largeUrl = element.src.replace(/w=400/, "w=1200");
+  main.src = largeUrl;
+  main.alt = element.alt;
+  document.querySelectorAll(".thumbnails img").forEach(img => img.classList.remove("active"));
+  element.classList.add("active");
+}
+function openLightbox(element) {
+  document.getElementById("lightboxImage").src = element.src;
+  document.getElementById("lightbox").classList.add("open");
+}
+function closeLightbox() {
+  document.getElementById("lightbox").classList.remove("open");
+}
+document.addEventListener("keydown", event => {
+  if (event.key === "Escape") closeLightbox();
+});
+
+/* Animacje uruchamiają się łagodnie, gdy element pojawia się na ekranie. */
+const revealItems = document.querySelectorAll(".reveal");
+revealItems.forEach((item, index) => {
+  if (item.matches(".gallery img")) {
+    item.style.setProperty("--reveal-delay", `${(index % 3) * 110}ms`);
+  }
+});
+if ("IntersectionObserver" in window) {
+  const revealObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("is-visible");
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  revealItems.forEach(item => revealObserver.observe(item));
+} else {
+  revealItems.forEach(item => item.classList.add("is-visible"));
+}
+</script>
+</body>
+</html>
